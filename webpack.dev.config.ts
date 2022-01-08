@@ -28,6 +28,10 @@ const config: Configuration = {
         },
       },
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.less$/i,
         use: [
           {
@@ -50,6 +54,11 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      src: path.resolve(__dirname, 'src/'),
+      application: path.resolve(__dirname, './src/application'),
+      ui: path.resolve(__dirname, './src/ui'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

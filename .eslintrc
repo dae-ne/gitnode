@@ -2,7 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["tsconfig.json"]
   },
   "extends": [
     "plugin:react/recommended",
@@ -109,7 +110,13 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index"
+        ],
         "pathGroups": [
           {
             "pattern": "react",
@@ -117,14 +124,13 @@
             "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroupsExcludedImportTypes": ["react"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
         }
       }
     ],
-    "curly": ["error", "multi"],
     "max-len": [
       "error",
       100,
@@ -137,7 +143,8 @@
     "react/react-in-jsx-scope": "error",
     "react/prop-types": "error",
     "@typescript-eslint/indent": ["error", 2],
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-empty-interface": "error",

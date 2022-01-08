@@ -1,10 +1,10 @@
 import React from 'react';
-import { Footer } from '../ui/Footer';
+import { Router } from 'application/Router';
 
 export const App = () => {
   return (
     <div>
-      <Footer copyright="asdfadsf" />
+      <Router />
     </div>
   );
 };

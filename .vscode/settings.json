@@ -8,14 +8,18 @@
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": false
+      "source.fixAll": true,
+      "source.organizeImports": false,
+      "source.sortMembers": true
     }
   },
 
   "[typescriptreact]": {
     "editor.tabSize": 2,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": false
+      "source.fixAll": true,
+      "source.organizeImports": false,
+      "source.sortMembers": true
     }
   }
 }
