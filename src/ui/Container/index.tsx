@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './styles.less';
 
 export interface ContainerProps {
-  size: 'small' | 'medium' | 'large' | 'x-large' | 'xx-large' | 'fluid';
+  size: 'small' | 'medium' | 'large' | 'x-large' | 'xx-large' | 'ultra-large' | 'fluid';
   children?: React.ReactNode;
   className?: string;
 }

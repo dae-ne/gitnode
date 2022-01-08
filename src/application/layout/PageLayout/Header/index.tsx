@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout, Menu } from 'antd';
+import { PathNameType, useNavigation } from 'application/routing';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { Container, NavMenu } from 'ui';
 import './styles.less';
 
 const { Header: LayoutHeader } = Layout;
@@ -11,60 +13,50 @@ export interface HeaderProps {
   className?: string;
 }
 
-type LinkKeys = 'home' | 'repos' | 'accounts' | 'settings';
-
 interface MenuLink {
-  key: LinkKeys;
   text: string;
-  to: string;
+  path: PathNameType;
 }
 
 const menuLinks: MenuLink[] = [
   {
-    key: 'home',
     text: 'Home',
-    to: '/',
+    path: '/',
   },
   {
-    key: 'repos',
     text: 'Repositories',
-    to: '/repos',
-  },
-  {
-    key: 'accounts',
-    text: 'Accounts',
-    to: '/',
-  },
-  {
-    key: 'settings',
-    text: 'Settings',
-    to: '/',
+    path: '/repos',
   },
 ];
 
 export const Header = ({ className }: HeaderProps) => {
-  const [activeKey, setActiveKey] = useState<LinkKeys>('home');
+  const { activeKey, setActiveKey } = useNavigation();
   return (
     <LayoutHeader className={classNames('header', className)}>
-      <div className="header__main">
-        <div className="header__logo">
-          <Link to="/">
-            <h1>.ginode</h1>
-          </Link>
+      <Container className="header__container" size="ultra-large">
+        <div className="header__main">
+          <div className="header__logo">
+            <Link to="/">
+              <h1>.ginode</h1>
+            </Link>
+          </div>
+          <nav>
+            <NavMenu<PathNameType>
+              mode="horizontal"
+              selectedKeys={activeKey ? [activeKey] : undefined}
+            >
+              {menuLinks.map((link) => (
+                <Item className="header__nav-item" key={link.path}>
+                  <Link to={link.path} onClick={() => setActiveKey(link.path)}>
+                    {link.text}
+                  </Link>
+                </Item>
+              ))}
+            </NavMenu>
+          </nav>
         </div>
-        <nav>
-          <Menu theme="light" mode="horizontal" selectedKeys={[activeKey]}>
-            {menuLinks.map((link) => (
-              <Item className="header__nav-item" key={link.key}>
-                <Link key={`link-${link.key}`} to={link.to} onClick={() => setActiveKey(link.key)}>
-                  {link.text}
-                </Link>
-              </Item>
-            ))}
-          </Menu>
-        </nav>
-      </div>
-      <h1 className="header__xd">Logo</h1>
+        <h1 className="header__xd">Logo</h1>
+      </Container>
     </LayoutHeader>
   );
 };
