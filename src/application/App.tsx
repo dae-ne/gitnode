@@ -1,10 +1,11 @@
 import React from 'react';
-import { Router } from './routing/Router';
+import { HelmetProvider } from 'react-helmet-async';
+import { Router } from './routing';
 
 export const App = () => {
   return (
-    <div>
+    <HelmetProvider>
       <Router />
-    </div>
+    </HelmetProvider>
   );
 };

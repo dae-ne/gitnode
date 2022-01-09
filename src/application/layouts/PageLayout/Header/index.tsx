@@ -4,6 +4,7 @@ import { PathNameType, useNavigation } from 'application/routing';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Container, NavMenu } from 'ui';
+import { menuLinks } from './menu';
 import './styles.less';
 
 const { Header: LayoutHeader } = Layout;
@@ -12,22 +13,6 @@ const { Item } = Menu;
 export interface HeaderProps {
   className?: string;
 }
-
-interface MenuLink {
-  text: string;
-  path: PathNameType;
-}
-
-const menuLinks: MenuLink[] = [
-  {
-    text: 'Home',
-    path: '/',
-  },
-  {
-    text: 'Repositories',
-    path: '/repos',
-  },
-];
 
 export const Header = ({ className }: HeaderProps) => {
   const { activeKey, setActiveKey } = useNavigation();

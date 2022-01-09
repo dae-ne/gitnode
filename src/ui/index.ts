@@ -1,4 +1,5 @@
 export * from './Container';
-export * from './PageWrapper';
-export * from './ContentHeader';
+export * from './PageHeader';
 export * from './NavMenu';
+export * from './Page';
+export * from './Grid';

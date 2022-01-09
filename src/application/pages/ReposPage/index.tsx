@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const RepositoriesPage = () => {
+export const ReposPage = () => {
   return <div>repositories page</div>;
 };

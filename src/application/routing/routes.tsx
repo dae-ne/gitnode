@@ -1,6 +1,6 @@
 import React from 'react';
-import { PageLayout } from 'application/layout';
-import { HomePage, RepositoriesPage } from 'application/pages';
+import { BaseLayout, PageLayout } from 'application/layouts';
+import { HomePage, ReposPage } from 'application/pages';
 import { RouteObject } from 'react-router';
 
 export const ROUTER_PATHS = ['/', '/repos', '/accounts', '/settings'] as const;
@@ -14,15 +14,21 @@ export interface Routes extends Omit<RouteObject, 'path'> {
 export const routes: Routes[] = [
   {
     path: '/',
-    element: <PageLayout />,
+    element: <BaseLayout />,
     children: [
       {
         path: '/',
-        element: <HomePage />,
-      },
-      {
-        path: '/repos',
-        element: <RepositoriesPage />,
+        element: <PageLayout />,
+        children: [
+          {
+            path: '/',
+            element: <HomePage title="home" />,
+          },
+          {
+            path: '/repos',
+            element: <ReposPage />,
+          },
+        ],
       },
     ],
   },

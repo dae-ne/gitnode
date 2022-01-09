@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, MenuProps } from 'antd';
+import './styles.less';
 
 type OmmitedProps =
   | 'theme'
@@ -18,11 +19,17 @@ export interface NavMenuProps<TLinkKeys extends string> extends Omit<MenuProps, 
   selectedKeys?: TLinkKeys[];
 }
 
-export function NavMenu<TLinkKeys extends string>(props: NavMenuProps<TLinkKeys>) {
-  const { defaultOpenKeys, openKeys, activeKey, defaultSelectedKeys, selectedKeys, ...otherProps } =
-    props;
+export function NavMenu<TLinkKeys extends string>({
+  defaultOpenKeys,
+  openKeys,
+  activeKey,
+  defaultSelectedKeys,
+  selectedKeys,
+  ...otherProps
+}: NavMenuProps<TLinkKeys>) {
   return (
     <Menu
+      className="nav-menu"
       theme="light"
       defaultOpenKeys={defaultOpenKeys}
       openKeys={openKeys}

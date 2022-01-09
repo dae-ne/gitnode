@@ -8,16 +8,19 @@ export interface PageHeaderProps extends Omit<AntdPageHeaderProps, 'onBack' | 'p
   children?: React.ReactNode;
 }
 
-export const ContentHeader = (props: PageHeaderProps) => {
-  const { back = 'show', ghost = false, className, ...otherProps } = props;
-
+export const PageHeader = ({
+  back = 'show',
+  ghost = false,
+  className,
+  ...otherProps
+}: PageHeaderProps) => {
   const goBack = () => {
     return back === 'show' ? window.history.back() : undefined;
   };
 
   return (
     <AntdPageHeader
-      className={classNames('content-header', className)}
+      className={classNames('page-header', className)}
       ghost={ghost}
       onBack={goBack}
       {...otherProps}
