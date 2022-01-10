@@ -1,0 +1,23 @@
+@import '~antd/es/style/themes/default.less';
+
+body .accounts-list-card {
+  &__grid {
+    width: 33.33%;
+  }
+}
+
+@media screen and (max-width: @screen-md) {
+  body .accounts-list-card {
+    &__grid {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (max-width: @screen-xs) {
+  body .accounts-list-card {
+    &__grid {
+      width: 100%;
+    }
+  }
+}

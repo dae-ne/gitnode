@@ -1,26 +1,28 @@
-/* stylelint-disable unit-allowed-list */
+@import '~antd/es/style/themes/default.less';
+
 body .container {
   margin: 0 auto;
-  max-width: 576px;
+  max-width: @screen-sm;
 
   &--medium {
-    max-width: 768px;
+    max-width: @screen-md;
   }
 
   &--large {
-    max-width: 992px;
+    max-width: @screen-lg;
   }
 
   &--x-large {
-    max-width: 1200px;
+    max-width: @screen-xl;
   }
 
   &--xx-large {
+    /* stylelint-disable-next-line unit-allowed-list */
     max-width: 1400px;
   }
 
   &--ultra-large {
-    max-width: 1600px;
+    max-width: @screen-xxl;
   }
 
   &--fluid {

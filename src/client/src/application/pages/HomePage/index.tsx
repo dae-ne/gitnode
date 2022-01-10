@@ -1,4 +1,5 @@
-import { UserDetailsCard } from 'domain/user';
+import { AccountsListCard } from 'domain/accounts';
+import { UserCard } from 'domain/user';
 import React from 'react';
 import { Button, Descriptions } from 'antd';
 import { Link } from 'react-router-dom';
@@ -28,15 +29,13 @@ export const HomePage = ({ title }: PageTitleProp) => {
     <Page title={title} header={renderHeader()}>
       <Grid>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-          <Card title="Accounts">
-            <div>temporary content</div>
-          </Card>
+          <AccountsListCard />
           <Card bordered={false} extra={<Link to="/repos">See all</Link>} title="Repositories">
             <div>temporary content</div>
           </Card>
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <UserDetailsCard />
+          <UserCard />
         </Col>
       </Grid>
     </Page>
