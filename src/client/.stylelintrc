@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "syntax": "less",
+  "rules": {
+    "unit-allowed-list": ["em", "rem", "%"]
+  }
+}

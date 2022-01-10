@@ -8,7 +8,7 @@ export type GridColProps = ColProps;
 export type GridRowProps = Omit<RowProps, 'gutter'>;
 
 const Col = ({ className, ...otherProps }: GridColProps) => (
-  <AntdCol className={classNames('grid--col', className)} {...otherProps} />
+  <AntdCol className={classNames('grid__col', className)} {...otherProps} />
 );
 
 const Row = (props: GridRowProps) => <AntdRow gutter={24} {...props} />;
