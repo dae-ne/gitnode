@@ -15,14 +15,14 @@ export const PageHeader = ({
   ...otherProps
 }: PageHeaderProps) => {
   const goBack = () => {
-    return back === 'show' ? window.history.back() : undefined;
+    return window.history.back();
   };
 
   return (
     <AntdPageHeader
       className={classNames('page-header', className)}
       ghost={ghost}
-      onBack={goBack}
+      onBack={back === 'show' ? goBack : undefined}
       {...otherProps}
     />
   );

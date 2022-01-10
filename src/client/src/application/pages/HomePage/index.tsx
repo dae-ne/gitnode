@@ -1,7 +1,8 @@
 import { AccountsListCard } from 'domain/accounts';
+import { ReposListCard } from 'domain/repos';
 import { UserCard } from 'domain/user';
 import React from 'react';
-import { Button, Descriptions } from 'antd';
+import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { PageHeader, Page, PageTitleProp, Grid, Card } from 'ui';
 
@@ -10,18 +11,8 @@ const { Col } = Grid;
 const renderHeader = () => (
   <PageHeader
     title="Home"
-    subTitle="This is a subtitle"
-    extra={[
-      <Button key="2">Operation</Button>,
-      <Button key="1" type="primary">
-        Primary
-      </Button>,
-    ]}
-  >
-    <Descriptions size="small" column={3}>
-      <Descriptions.Item label="Created">Lili Qu</Descriptions.Item>
-    </Descriptions>
-  </PageHeader>
+    extra={[<Button key="1">Add account</Button>, <Button key="2">Create repository</Button>]}
+  />
 );
 
 export const HomePage = ({ title }: PageTitleProp) => {
@@ -30,12 +21,11 @@ export const HomePage = ({ title }: PageTitleProp) => {
       <Grid>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
           <AccountsListCard />
-          <Card bordered={false} extra={<Link to="/repos">See all</Link>} title="Repositories">
-            <div>temporary content</div>
-          </Card>
+          <ReposListCard limit={6} extra={<Link to="/repos">See all</Link>} />
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
           <UserCard />
+          <Card></Card>
         </Col>
       </Grid>
     </Page>
