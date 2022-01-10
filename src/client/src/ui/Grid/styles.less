@@ -1,5 +1,6 @@
 body .grid {
-  &__col {
-    margin-bottom: 24px;
+  &__col:not(:last-child),
+  &__col > *:not(:last-child) {
+    margin-bottom: 1.5rem;
   }
 }

@@ -9,7 +9,7 @@ export interface PageHeaderProps extends Omit<AntdPageHeaderProps, 'onBack' | 'p
 }
 
 export const PageHeader = ({
-  back = 'show',
+  back = 'hide',
   ghost = false,
   className,
   ...otherProps

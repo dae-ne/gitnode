@@ -3,19 +3,17 @@ import { Col as AntdCol, Row as AntdRow, ColProps, RowProps } from 'antd';
 import classNames from 'classnames';
 import './styles.less';
 
+export type GridProps = Omit<RowProps, 'gutter'>;
+
 export type GridColProps = ColProps;
 
-export type GridRowProps = Omit<RowProps, 'gutter'>;
+export class Grid extends React.Component<GridProps> {
+  static Col({ className, ...otherProps }: GridColProps) {
+    return <AntdCol className={classNames('grid__col', className)} {...otherProps} />;
+  }
 
-const Col = ({ className, ...otherProps }: GridColProps) => (
-  <AntdCol className={classNames('grid__col', className)} {...otherProps} />
-);
-
-const Row = (props: GridRowProps) => <AntdRow gutter={24} {...props} />;
-
-export interface GridType {
-  Col: typeof Col;
-  Row: typeof Row;
+  render() {
+    const { className, ...otherProps } = this.props;
+    return <AntdRow className={classNames('grid', className)} gutter={24} {...otherProps} />;
+  }
 }
-
-export const Grid: GridType = { Col, Row };

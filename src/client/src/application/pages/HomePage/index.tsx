@@ -1,13 +1,13 @@
 import React from 'react';
-import { Button, Card, Descriptions } from 'antd';
+import { Button, Descriptions } from 'antd';
 import { Link } from 'react-router-dom';
-import { PageHeader, Page, PageTitleProp, Grid } from 'ui';
+import { PageHeader, Page, PageTitleProp, Grid, Card } from 'ui';
 
-const { Row, Col } = Grid;
+const { Col } = Grid;
 
 const renderHeader = () => (
   <PageHeader
-    title="Title"
+    title="Home"
     subTitle="This is a subtitle"
     extra={[
       <Button key="2">Operation</Button>,
@@ -25,9 +25,9 @@ const renderHeader = () => (
 export const HomePage = ({ title }: PageTitleProp) => {
   return (
     <Page title={title} header={renderHeader()}>
-      <Row>
+      <Grid>
         <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-          <Card title="Accounts" bordered={false}>
+          <Card title="Accounts">
             <div>temporary content</div>
           </Card>
           <Card bordered={false} extra={<Link to="/repos">See all</Link>} title="Repositories">
@@ -35,17 +35,17 @@ export const HomePage = ({ title }: PageTitleProp) => {
           </Card>
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <Card title="Something" bordered={false}>
+          <Card title="Something">
             <div>temporary content</div>
           </Card>
-          <Card bordered={false} title="User">
+          <Card title="User">
             <div>temporary content</div>
           </Card>
-          <Card bordered={false} title="Other">
+          <Card title="Other">
             <div>temporary content</div>
           </Card>
         </Col>
-      </Row>
+      </Grid>
     </Page>
   );
 };

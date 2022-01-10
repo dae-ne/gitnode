@@ -5,6 +5,7 @@
   ],
   "syntax": "less",
   "rules": {
-    "unit-allowed-list": ["em", "rem", "%", "s"]
+    "unit-allowed-list": ["em", "rem", "%", "s"],
+    "string-quotes": "single"
   }
 }
