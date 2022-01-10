@@ -21,5 +21,9 @@
       "source.organizeImports": false,
       "source.sortMembers": true
     }
+  },
+
+  "[less]": {
+    "editor.tabSize": 2,
   }
 }

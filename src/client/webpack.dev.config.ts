@@ -57,6 +57,7 @@ const config: Configuration = {
     alias: {
       src: path.resolve(__dirname, 'src/'),
       application: path.resolve(__dirname, './src/application'),
+      domain: path.resolve(__dirname, './src/domain'),
       ui: path.resolve(__dirname, './src/ui'),
     },
   },

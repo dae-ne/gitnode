@@ -1,3 +1,4 @@
+import { UserDetailsCard } from 'domain/user';
 import React from 'react';
 import { Button, Descriptions } from 'antd';
 import { Link } from 'react-router-dom';
@@ -35,15 +36,7 @@ export const HomePage = ({ title }: PageTitleProp) => {
           </Card>
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <Card title="Something">
-            <div>temporary content</div>
-          </Card>
-          <Card title="User">
-            <div>temporary content</div>
-          </Card>
-          <Card title="Other">
-            <div>temporary content</div>
-          </Card>
+          <UserDetailsCard />
         </Col>
       </Grid>
     </Page>
