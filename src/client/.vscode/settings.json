@@ -1,0 +1,25 @@
+{
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": false,
+      "source.sortMembers": true
+    }
+  },
+
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": false,
+      "source.sortMembers": true
+    }
+  }
+}

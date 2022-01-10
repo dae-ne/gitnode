@@ -1,1 +1,1 @@
-# GitNode
+# .gitnode
