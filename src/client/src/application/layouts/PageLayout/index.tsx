@@ -7,11 +7,11 @@ const { Content } = Layout;
 
 export const PageLayout = () => {
   return (
-    <div>
+    <>
       <Header />
       <Content>
         <Outlet />
       </Content>
-    </div>
+    </>
   );
 };
