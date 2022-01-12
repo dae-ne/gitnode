@@ -10,10 +10,10 @@ export const AccountsListCard = () => {
   return (
     <Card className="accounts-list-card" title="Accounts" bodyStyle={{ padding: 0 }}>
       {userAccountsMock.map((account) => {
-        const { id, login, avatarUrl } = account;
+        const { id, login, avatarUrl, platform } = account;
         return (
           <Grid className="accounts-list-card__grid" key={id}>
-            <AccountCard avatarUrl={avatarUrl} login={login} />
+            <AccountCard avatarUrl={avatarUrl} login={login} origin={platform} />
           </Grid>
         );
       })}

@@ -6,5 +6,5 @@ export interface Account {
   name?: string;
   login: string;
   url: string;
-  avatarUrl?: string;
+  avatarUrl: string;
 }

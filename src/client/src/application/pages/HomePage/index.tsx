@@ -25,7 +25,6 @@ export const HomePage = ({ title }: PageTitleProp) => {
         </Col>
         <Col xl={8} lg={24} md={24} sm={24} xs={24}>
           <UserCard />
-          <Card></Card>
         </Col>
       </Grid>
     </Page>

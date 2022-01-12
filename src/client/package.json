@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "webpack serve --config webpack.dev.config.ts",
-    "build": "webpack --config webpack.prod.config.ts",
+    "start": "webpack serve --config webpack.config.ts",
     "eslint": "eslint . --ext .ts,.tsx",
     "eslint:fix": "eslint . --fix --ext .ts,.tsx",
     "stylelint": "stylelint src/**/*.less --custom-syntax postcss-less",

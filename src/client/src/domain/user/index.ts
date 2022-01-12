@@ -1,2 +1,2 @@
-export * from './models/User';
+export * from './User';
 export * from './UserCard';
