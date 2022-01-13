@@ -3,17 +3,27 @@ import { ReposListCard } from 'domain/repos';
 import { UserCard } from 'domain/user';
 import React from 'react';
 import { Button } from 'antd';
-import { Link } from 'react-router-dom';
-import { PageHeader, Page, PageTitleProp, Grid, Card } from 'ui';
+import { Link, useNavigate } from 'react-router-dom';
+import { PageHeader, Page, PageTitleProp, Grid } from 'ui';
 
 const { Col } = Grid;
 
-const renderHeader = () => (
-  <PageHeader
-    title="Home"
-    extra={[<Button key="1">Add account</Button>, <Button key="2">Create repository</Button>]}
-  />
-);
+const renderHeader = () => {
+  const navigate = useNavigate();
+  return (
+    <PageHeader
+      title="Home"
+      extra={[
+        <Button key="1" onClick={() => navigate('/accounts/new')}>
+          Add account
+        </Button>,
+        <Button key="2" onClick={() => navigate('/repos/new')}>
+          Create repository
+        </Button>,
+      ]}
+    />
+  );
+};
 
 export const HomePage = ({ title }: PageTitleProp) => {
   return (

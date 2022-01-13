@@ -11,6 +11,10 @@ export const menuLinks: MenuLink[] = [
     path: '/',
   },
   {
+    text: 'Accounts',
+    path: '/accounts',
+  },
+  {
     text: 'Repositories',
     path: '/repos',
   },

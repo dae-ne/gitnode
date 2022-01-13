@@ -5,7 +5,7 @@ import { Avatar } from 'ui';
 
 export interface UserInfoProps {
   size: 'medium' | 'large';
-  name: string;
+  name: string | React.ReactNode;
   imageUrl: string;
   origin: string;
   className?: string;

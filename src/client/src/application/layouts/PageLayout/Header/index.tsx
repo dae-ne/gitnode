@@ -22,7 +22,7 @@ export const Header = ({ className }: HeaderProps) => {
         <div className="header__main">
           <div className="header__logo">
             <Link to="/">
-              <h1>.ginode</h1>
+              <h1>.gitnode</h1>
             </Link>
           </div>
           <nav>

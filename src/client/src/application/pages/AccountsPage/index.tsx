@@ -1,4 +1,4 @@
-import { ReposListCard } from 'domain/repos';
+import { AccountsListCard } from 'domain/accounts';
 import React from 'react';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -8,17 +8,17 @@ const renderHeader = () => {
   const navigate = useNavigate();
   return (
     <PageHeader
-      title="Repositories"
+      title="Accounts"
       back="show"
-      extra={<Button onClick={() => navigate('/repos/new')}>Create repository</Button>}
+      extra={<Button onClick={() => navigate('/accounts/new')}>Add account</Button>}
     />
   );
 };
 
-export const ReposPage = ({ title }: PageTitleProp) => {
+export const AccountsPage = ({ title }: PageTitleProp) => {
   return (
-    <Page title={title} size="medium" header={renderHeader()}>
-      <ReposListCard />
+    <Page title={title} size="large" header={renderHeader()}>
+      <AccountsListCard />
     </Page>
   );
 };

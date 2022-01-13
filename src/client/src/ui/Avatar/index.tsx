@@ -5,8 +5,9 @@ import './styles.less';
 export interface AvatarProps {
   size: 'small' | 'medium' | 'large';
   src: string;
+  className?: string;
 }
 
-export const Avatar = ({ size, src }: AvatarProps) => (
-  <img className={classNames('avatar', `avatar--${size}`)} alt="" src={src} />
+export const Avatar = ({ size, src, className }: AvatarProps) => (
+  <img className={classNames('avatar', `avatar--${size}`, className)} alt="" src={src} />
 );

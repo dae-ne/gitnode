@@ -1,0 +1,38 @@
+body .repo-list-item {
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    margin-right: 1rem;
+  }
+
+  &__accessibility {
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0 1rem;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: red;
+    /* stylelint-disable-next-line unit-allowed-list */
+    border: 1px solid red;
+    border-radius: 0.25rem;
+  }
+
+  &__description {
+    margin-top: 0.5rem;
+    margin-right: 5rem;
+    /* stylelint-disable-next-line value-no-vendor-prefix */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

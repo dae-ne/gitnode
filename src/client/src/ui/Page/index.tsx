@@ -9,6 +9,7 @@ export interface PageTitleProp {
 }
 
 export interface PageProps extends PageTitleProp {
+  size?: 'medium' | 'large' | 'x-large';
   header?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
@@ -16,7 +17,7 @@ export interface PageProps extends PageTitleProp {
 
 const pageBaseTitle = '.gitnode';
 
-export const Page = ({ header, children, title, className }: PageProps) => {
+export const Page = ({ size = 'x-large', header, children, title, className }: PageProps) => {
   return (
     <div className={classNames('page', className)}>
       <Helmet>
@@ -27,7 +28,7 @@ export const Page = ({ header, children, title, className }: PageProps) => {
           <Container size="ultra-large">{header}</Container>
         </header>
       )}
-      <Container className="page__content" size="x-large">
+      <Container className="page__content" size={size}>
         {children}
       </Container>
     </div>
