@@ -9,7 +9,6 @@ const renderHeader = () => {
   return (
     <PageHeader
       title="Accounts"
-      back="show"
       extra={<Button onClick={() => navigate('/accounts/new')}>Add account</Button>}
     />
   );
@@ -18,7 +17,7 @@ const renderHeader = () => {
 export const AccountsPage = ({ title }: PageTitleProp) => {
   return (
     <Page title={title} size="large" header={renderHeader()}>
-      <AccountsListCard />
+      <AccountsListCard showHeader={false} />
     </Page>
   );
 };

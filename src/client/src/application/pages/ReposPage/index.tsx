@@ -9,7 +9,6 @@ const renderHeader = () => {
   return (
     <PageHeader
       title="Repositories"
-      back="show"
       extra={<Button onClick={() => navigate('/repos/new')}>Create repository</Button>}
     />
   );

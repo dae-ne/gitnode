@@ -6,9 +6,17 @@ import './styles.less';
 
 const { Grid } = Card;
 
-export const AccountsListCard = () => {
+export interface AccountsListCardProps {
+  showHeader?: boolean;
+}
+
+export const AccountsListCard = ({ showHeader = true }: AccountsListCardProps) => {
+  const getHeaderTitle = () => {
+    return showHeader ? 'Accounts' : undefined;
+  };
+
   return (
-    <Card className="accounts-list-card" title="Accounts" bodyStyle={{ padding: 0 }}>
+    <Card className="accounts-list-card" title={getHeaderTitle()} bodyStyle={{ padding: 0 }}>
       {userAccountsMock.map((account) => {
         const { id, login, avatarUrl, platform } = account;
         return (

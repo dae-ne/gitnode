@@ -1,29 +1,25 @@
+import { AccountsFormItem } from 'domain/accounts/AccountsFormItem';
+import { PlatformsFormItem } from 'domain/platforms';
+import { RepoForm } from 'domain/repos';
 import React from 'react';
-import { Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { PageHeader, Page, PageTitleProp } from 'ui';
+import { PageHeader, Page, PageTitleProp, Container, Wrapper } from 'ui';
 
 const renderHeader = () => {
-  const navigate = useNavigate();
-  return (
-    <PageHeader
-      title="Home"
-      extra={[
-        <Button key="1" onClick={() => navigate('/accounts/new')}>
-          Add account
-        </Button>,
-        <Button key="2" onClick={() => navigate('/repos/new')}>
-          Create repository
-        </Button>,
-      ]}
-    />
-  );
+  return <PageHeader title="Create a new repository" back="show" />;
 };
 
 export const NewRepoPage = ({ title }: PageTitleProp) => {
   return (
-    <Page title={title} header={renderHeader()}>
-      asdf
+    <Page title={title} size="large" header={renderHeader()}>
+      <Wrapper background="white">
+        <Container size="small">
+          <RepoForm
+            platforms={<PlatformsFormItem onChange={(text: string) => console.log(text)} />}
+            accounts={<AccountsFormItem platform="GitHub" />}
+            submitText="Create"
+          />
+        </Container>
+      </Wrapper>
     </Page>
   );
 };

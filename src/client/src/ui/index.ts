@@ -6,3 +6,4 @@ export * from './Grid';
 export * from './Card';
 export * from './UserInfo';
 export * from './Avatar';
+export * from './Wrapper';

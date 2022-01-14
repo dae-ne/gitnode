@@ -30,7 +30,7 @@ export function NavMenu<TLinkKeys extends string>({
   return (
     <Menu
       className="nav-menu"
-      theme="light"
+      theme="dark"
       defaultOpenKeys={defaultOpenKeys}
       openKeys={openKeys}
       activeKey={activeKey}
