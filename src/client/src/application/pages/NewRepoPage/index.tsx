@@ -1,5 +1,3 @@
-import { AccountsFormItem } from 'domain/accounts/AccountsFormItem';
-import { PlatformsFormItem } from 'domain/platforms';
 import { RepoForm } from 'domain/repos';
 import React from 'react';
 import { PageHeader, Page, PageTitleProp, Container, Wrapper } from 'ui';
@@ -13,11 +11,9 @@ export const NewRepoPage = ({ title }: PageTitleProp) => {
     <Page title={title} size="large" header={renderHeader()}>
       <Wrapper background="white">
         <Container size="small">
-          <RepoForm
-            platforms={<PlatformsFormItem onChange={(text: string) => console.log(text)} />}
-            accounts={<AccountsFormItem platform="GitHub" />}
-            submitText="Create"
-          />
+          <p>platform</p>
+          <p>account</p>
+          <RepoForm submitText="Create" />
         </Container>
       </Wrapper>
     </Page>

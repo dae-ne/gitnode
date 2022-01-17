@@ -1,3 +1,4 @@
+import { AvatarDropdown } from 'domain/user';
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { PathNameType, useNavigation } from 'application/routing';
@@ -40,7 +41,7 @@ export const Header = ({ className }: HeaderProps) => {
             </NavMenu>
           </nav>
         </div>
-        <h1 className="header__xd">Logo</h1>
+        <AvatarDropdown />
       </Container>
     </LayoutHeader>
   );

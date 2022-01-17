@@ -2,8 +2,8 @@ import React from 'react';
 import { Button, Form, Input, Switch } from 'antd';
 
 export interface RepoFormProps {
-  platforms: React.ReactNode;
-  accounts: React.ReactNode;
+  platforms?: React.ReactNode;
+  accounts?: React.ReactNode;
   submitText: string;
 }
 

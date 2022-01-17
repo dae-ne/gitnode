@@ -56,6 +56,7 @@ const config: Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       src: path.resolve(__dirname, 'src/'),
+      infrastructure: path.resolve(__dirname, './src/infrastructure'),
       application: path.resolve(__dirname, './src/application'),
       domain: path.resolve(__dirname, './src/domain'),
       ui: path.resolve(__dirname, './src/ui'),

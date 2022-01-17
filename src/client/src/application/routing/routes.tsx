@@ -4,15 +4,17 @@ import {
   AccountPage,
   AccountsPage,
   HomePage,
+  LoginPage,
   NewAccountPage,
   NewRepoPage,
   RepoPage,
   ReposPage,
 } from 'application/pages';
-import { RouteObject } from 'react-router';
+import { Navigate, RouteObject } from 'react-router';
 
 export const ROUTER_PATHS = [
   '/',
+  '/login',
   '/accounts',
   '/accounts/:accountId',
   '/accounts/new',
@@ -30,14 +32,18 @@ interface Routes extends Omit<RouteObject, 'path' | 'children'> {
   children?: Routes[];
 }
 
-export const routes: Routes[] = [
+export const routes = (authenticated: boolean): Routes[] => [
   {
     path: '/',
     element: <BaseLayout />,
     children: [
       {
+        path: '/login',
+        element: <LoginPage />,
+      },
+      {
         path: '/',
-        element: <PageLayout />,
+        element: authenticated ? <PageLayout /> : <Navigate to="/login" />,
         children: [
           {
             path: '/',

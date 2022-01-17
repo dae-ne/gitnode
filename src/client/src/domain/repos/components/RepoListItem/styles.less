@@ -1,3 +1,5 @@
+@import '~antd/es/style/themes/default.less';
+
 body .repo-list-item {
   &__meta {
     display: flex;
@@ -20,9 +22,9 @@ body .repo-list-item {
     padding: 0 1rem;
     font-weight: 400;
     font-size: 0.75rem;
-    color: red;
+    color: @text-color-secondary;
     /* stylelint-disable-next-line unit-allowed-list */
-    border: 1px solid red;
+    border: 1px solid @text-color-secondary;
     border-radius: 0.25rem;
   }
 

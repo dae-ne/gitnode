@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './styles.less';
 
 export interface AvatarProps {
-  size: 'small' | 'medium' | 'large';
+  size: 'x-small' | 'small' | 'medium' | 'large';
   src: string;
   className?: string;
 }

@@ -1,26 +1,12 @@
 import React from 'react';
 import { Form, Input, Button, Select, Radio, Switch } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import { PageHeader, Page, PageTitleProp, Container } from 'ui';
 import './styles.less';
 
 const { Option } = Select;
 
 const renderHeader = () => {
-  const navigate = useNavigate();
-  return (
-    <PageHeader
-      title="Home"
-      extra={[
-        <Button key="1" onClick={() => navigate('/accounts/new')}>
-          Add account
-        </Button>,
-        <Button key="2" onClick={() => navigate('/repos/new')}>
-          Create repository
-        </Button>,
-      ]}
-    />
-  );
+  return <PageHeader title="Repository" back="show" />;
 };
 
 export const RepoPage = ({ title }: PageTitleProp) => {

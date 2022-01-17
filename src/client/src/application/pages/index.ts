@@ -5,3 +5,4 @@ export * from './NewAccountPage';
 export * from './ReposPage';
 export * from './RepoPage';
 export * from './NewRepoPage';
+export * from './LoginPage';
