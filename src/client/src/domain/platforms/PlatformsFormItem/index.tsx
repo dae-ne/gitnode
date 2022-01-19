@@ -3,11 +3,11 @@ import { Form, Radio, RadioChangeEvent } from 'antd';
 import { platformsMock } from '../_mock';
 
 export interface PlatformsFormItem {
-  onChange: (name: string) => void;
+  onChange?: (name: string) => void;
 }
 
 export const PlatformsFormItem = ({ onChange }: PlatformsFormItem) => {
-  const handleValueChange = (event: RadioChangeEvent) => onChange(event.target.value);
+  const handleValueChange = (event: RadioChangeEvent) => onChange && onChange(event.target.value);
   return (
     <Form.Item
       name="platform"

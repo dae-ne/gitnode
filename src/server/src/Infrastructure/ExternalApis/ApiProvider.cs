@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Net.Http.Headers;
 using GitNode.Application.Common.Interfaces;
 using GitNode.Infrastructure.ExternalApis.Bitbucket;
 using GitNode.Infrastructure.ExternalApis.GitHub;
@@ -21,6 +22,7 @@ namespace GitNode.Infrastructure.ExternalApis
             IGitLabMapper gitLabMapper)
         {
             var httpClient = httpClientFactory.CreateClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             GitHub = new GitHubApi(httpClient, gitHubOptions.Value, gitHubMapper);
             Bitbucket = new BitbucketApi(bitbucketOptions.Value, bitbucketMapper);
             GitLab = new GitLabApi(httpClient, gitLabOptions.Value, gitLabMapper);

@@ -21,6 +21,7 @@ export const useGetUserQuery = () => {
 
   return useQuery('user', () => getUser(axios), {
     cacheTime: 900,
+    staleTime: 10000,
     select: (data): User => ({
       id: data.id,
       givenName: data.given_name,

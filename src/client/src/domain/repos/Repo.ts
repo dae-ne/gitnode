@@ -1,5 +1,5 @@
 export interface Repo {
-  id: number;
+  id?: number;
   originId: number;
   name: string;
   description: string;

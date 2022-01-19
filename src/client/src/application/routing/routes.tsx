@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BaseLayout, PageLayout } from 'application/layouts';
 import {
   AccountPage,
@@ -14,6 +14,7 @@ import { Navigate, RouteObject } from 'react-router';
 
 export const ROUTER_PATHS = [
   '/',
+  '/redirect',
   '/login',
   '/accounts',
   '/accounts/:accountId',
@@ -38,12 +39,16 @@ export const routes = (authenticated: boolean): Routes[] => [
     element: <BaseLayout />,
     children: [
       {
+        path: '/redirect',
+        element: <Fragment />,
+      },
+      {
         path: '/login',
         element: <LoginPage />,
       },
       {
         path: '/',
-        element: authenticated ? <PageLayout /> : <Navigate to="/login" />,
+        element: authenticated ? <PageLayout /> : <Navigate to={`/login${location.search}`} />,
         children: [
           {
             path: '/',

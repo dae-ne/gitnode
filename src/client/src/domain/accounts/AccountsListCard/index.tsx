@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'ui';
-import { userAccountsMock } from '../_mock';
+import { useGetAccountsQuery } from '../api';
 import { AccountListItemCard } from '../components';
 import './styles.less';
 
@@ -11,13 +11,20 @@ export interface AccountsListCardProps {
 }
 
 export const AccountsListCard = ({ showHeader = true }: AccountsListCardProps) => {
+  const { isLoading, data } = useGetAccountsQuery();
+
   const getHeaderTitle = () => {
     return showHeader ? 'Accounts' : undefined;
   };
 
   return (
-    <Card className="accounts-list-card" title={getHeaderTitle()} bodyStyle={{ padding: 0 }}>
-      {userAccountsMock.map((account) => {
+    <Card
+      className="accounts-list-card"
+      title={getHeaderTitle()}
+      bodyStyle={{ padding: 0 }}
+      loading={isLoading}
+    >
+      {data?.map((account) => {
         const { id, login, avatarUrl, platform } = account;
         return (
           <Grid className="accounts-list-card__grid" key={id}>

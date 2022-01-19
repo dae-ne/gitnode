@@ -28,6 +28,7 @@ namespace GitNode.Infrastructure.ExternalApis.Mappers
             Login = model.Login,
             Name = model.Name,
             Url = model.HtmlUrl,
+            AvatarUrl = model.AvatarUrl
         };
 
         public Token Map(GitHubTokenResponseDto model) => new()

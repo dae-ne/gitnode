@@ -11,15 +11,17 @@ namespace GitNode.WebApi.Api.Accounts.Responses
             string platform,
             string name,
             string login,
-            string url)
+            string url,
+            string avatarUrl)
         {
             Id = id;
             OriginId = originId;
+            UserId = userId;
             Platform = platform;
             Name = name;
             Login = login;
             Url = url;
-            UserId = userId;
+            AvatarUrl = avatarUrl;
         }
 
         public int Id { get; set; }
@@ -35,6 +37,7 @@ namespace GitNode.WebApi.Api.Accounts.Responses
         public string Login { get; set; }
         
         public string Url { get; set; }
+        public string AvatarUrl { get; set; }
 
         public static AccountResponseDto FromDomain(AccountEntity account) =>
             new(account.Id,
@@ -43,6 +46,7 @@ namespace GitNode.WebApi.Api.Accounts.Responses
                 account.Platform.Name,
                 account.Name,
                 account.Login,
-                account.Url);
+                account.Url,
+                account.AvatarUrl);
     }
 }

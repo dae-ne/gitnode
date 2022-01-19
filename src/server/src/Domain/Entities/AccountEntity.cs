@@ -13,11 +13,11 @@ namespace GitNode.Domain.Entities
         public string Login { get; set; }
 
         public string Url { get; set; }
+
+        public string AvatarUrl { get; set; }
         
         public string Token { get; set; }
-        
-        public string RefreshToken { get; set; }
-        
+
         public string UserId { get; set; }
 
         public UserEntity User { get; set; }

@@ -47,6 +47,7 @@ namespace GitNode.Application.Accounts.Commands.AddAccount
             {
                 OriginId = user.Id,
                 Url = user.Url,
+                AvatarUrl = user.AvatarUrl,
                 UserId = _currentUser.Id,
                 PlatformId = platform.Id,
                 Login = user.Login,
