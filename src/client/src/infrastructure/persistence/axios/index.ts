@@ -1,2 +1,2 @@
-export * from './axiosClient';
+export * from './api';
 export * from './useAxiosInterceptors';

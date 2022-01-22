@@ -1,4 +1,4 @@
-import { axiosClient } from 'infrastructure/api';
+import { post } from 'infrastructure/persistence/axios';
 
 export interface TokenResponseDto {
   id_token: string;
@@ -8,17 +8,19 @@ export interface TokenResponseDto {
   token_type: string;
 }
 
+// TODO: request dtos
+
 export const authenticate = (code: string) => {
   const body = { code, grant_type: 'authorization_code' };
-  return axiosClient.post<TokenResponseDto>('/auth/token', body);
+  return post<typeof body, TokenResponseDto>('/auth/token', body);
 };
 
 export const refreshToken = (token: string) => {
   const body = { refresh_token: token, grant_type: 'refresh_token' };
-  return axiosClient.post<TokenResponseDto>('/auth/token', body);
+  return post<typeof body, TokenResponseDto>('/auth/token', body);
 };
 
 export const revokeToken = (token: string) => {
   const body = { token };
-  return axiosClient.post('/auth/revoke', body);
+  return post<typeof body, TokenResponseDto>('/auth/revoke', body);
 };

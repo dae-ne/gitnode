@@ -1,5 +1,4 @@
-import { AxiosInstance } from 'axios';
-import { useAxiosInterceptors } from 'infrastructure/api';
+import { get } from 'infrastructure/persistence/axios';
 import { useQuery } from 'react-query';
 import { User } from '..';
 
@@ -12,14 +11,10 @@ export interface UserResponseDto {
   created_at: string;
 }
 
-const getUser = (axiosInstance: AxiosInstance): Promise<UserResponseDto> => {
-  return axiosInstance.get('/user').then((response) => response.data);
-};
+const getUser = () => get<UserResponseDto>('./user');
 
 export const useGetUserQuery = () => {
-  const axios = useAxiosInterceptors();
-
-  return useQuery('user', () => getUser(axios), {
+  return useQuery('user', () => getUser(), {
     cacheTime: 900,
     staleTime: 10000,
     select: (data): User => ({

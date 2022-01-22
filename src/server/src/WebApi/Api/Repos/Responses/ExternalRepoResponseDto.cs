@@ -1,29 +1,24 @@
-﻿using GitNode.Domain.Entities;
-using GitNode.Domain.Models.Platforms;
+﻿using GitNode.Domain.Models.Platforms;
 
 namespace GitNode.WebApi.Api.Repos.Responses
 {
-    public class RepoResponseDto
+    public class ExternalRepoResponseDto
     {
-        private RepoResponseDto(
-            int id,
+        private ExternalRepoResponseDto(
             int originId,
             string name,
             string description,
             string url,
             bool @private,
-            RepoOwnerResponseDto owner)
+            string account)
         {
             OriginId = originId;
             Name = name;
             Description = description;
             Url = url;
             Private = @private;
-            Owner = owner;
-            Id = id;
+            Account = account;
         }
-
-        public int? Id { get; set; }
 
         public int OriginId { get; set; }
         
@@ -35,15 +30,14 @@ namespace GitNode.WebApi.Api.Repos.Responses
 
         public bool Private { get; set; }
         
-        public RepoOwnerResponseDto Owner { get; set; }
-
-        public static RepoResponseDto FromDomain(RepoEntity repo) =>
+        public string Account { get; set; }
+        
+        public static ExternalRepoResponseDto FromDomain(Repo repo) =>
             new(repo.Id,
-                repo.OriginId,
                 repo.Name,
                 repo.Description,
                 repo.Url,
                 repo.Private,
-                RepoOwnerResponseDto.FromDomain(repo.Account));
+                repo.Owner.Login);
     }
 }

@@ -1,5 +1,4 @@
-import { AxiosInstance } from 'axios';
-import { useAxiosInterceptors } from 'infrastructure/api';
+import { get } from 'infrastructure/persistence/axios';
 import { useQuery } from 'react-query';
 import { Account } from '..';
 
@@ -13,14 +12,10 @@ export interface AccountResponseDto {
   avatar_url: string;
 }
 
-const getAccounts = (axiosInstance: AxiosInstance): Promise<AccountResponseDto[]> => {
-  return axiosInstance.get('/accounts').then((response) => response.data);
-};
+const getAccounts = (): Promise<AccountResponseDto[]> => get<AccountResponseDto[]>('/accounts');
 
 export const useGetAccountsQuery = () => {
-  const axios = useAxiosInterceptors();
-
-  return useQuery('accounts', () => getAccounts(axios), {
+  return useQuery('accounts', getAccounts, {
     cacheTime: 1000,
     staleTime: 5000,
     select: (data): Account[] =>

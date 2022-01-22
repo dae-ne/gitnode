@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
-import { authState } from 'infrastructure/auth';
+import { authState, deleteTokens } from 'infrastructure/auth';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import { useResetRecoilState } from 'recoil';
 import { Avatar } from 'ui';
@@ -19,8 +19,8 @@ export const AvatarDropdown = ({ menu }: AvatarDropdownProps) => {
     (event: MenuInfo) => {
       const { key } = event;
       if (key === 'logout') {
+        deleteTokens();
         logout();
-        return;
       }
     },
     [menu],

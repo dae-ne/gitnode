@@ -1,5 +1,4 @@
-import { AxiosInstance } from 'axios';
-import { useAxiosInterceptors } from 'infrastructure/api';
+import { get } from 'infrastructure/persistence/axios';
 import { useQuery } from 'react-query';
 import { Repo } from '..';
 
@@ -13,14 +12,10 @@ export interface RepoResponseDto {
   account: string;
 }
 
-const getRepos = (axiosInstance: AxiosInstance): Promise<RepoResponseDto[]> => {
-  return axiosInstance.get('/repos').then((response) => response.data);
-};
+const getRepos = () => get<RepoResponseDto[]>('/repos');
 
 export const useGetReposQuery = () => {
-  const axios = useAxiosInterceptors();
-
-  return useQuery('repos', () => getRepos(axios), {
+  return useQuery('repos', getRepos, {
     cacheTime: 1000,
     staleTime: 5000,
     select: (data): Repo[] =>

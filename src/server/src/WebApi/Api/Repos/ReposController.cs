@@ -22,14 +22,14 @@ namespace GitNode.WebApi.Api.Repos
         }
         
         [HttpGet("{platform}/{account}")]
-        public async Task<ActionResult<IEnumerable<RepoResponseDto>>> GetExternalRepos(
+        public async Task<ActionResult<IEnumerable<ExternalRepoResponseDto>>> GetExternalRepos(
             [FromRoute] string platform,
             [FromRoute] string account)
         {
             var response = await Mediator.Send(new GetExternalReposQuery(
                 account,
                 PlatformUtils.FromString(platform)));
-            var dto = response.Select(RepoResponseDto.FromDomain);
+            var dto = response.Select(ExternalRepoResponseDto.FromDomain);
             return Ok(dto);
         }
         

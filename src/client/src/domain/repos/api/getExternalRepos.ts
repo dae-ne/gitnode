@@ -1,10 +1,5 @@
-import { AxiosInstance } from 'axios';
+import { get } from 'infrastructure/persistence/axios';
 import { RepoResponseDto } from '.';
 
-export const getExternalRepos = (
-  axiosInstance: AxiosInstance,
-  platform: string,
-  account: string,
-): Promise<RepoResponseDto[]> => {
-  return axiosInstance.get(`/repos/${platform}/${account}`).then((response) => response.data);
-};
+export const getExternalRepos = (platform: string, account: string) =>
+  get<RepoResponseDto[]>(`/repos/${platform}/${account}`);

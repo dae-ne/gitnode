@@ -2,14 +2,23 @@ import { useEffect } from 'react';
 import { authState } from 'infrastructure/auth';
 import { refreshToken as refresh } from 'infrastructure/auth';
 import { useRecoilState } from 'recoil';
-import { axiosClient } from './axiosClient';
+import { axios } from './axios';
 
 export const useAxiosInterceptors = () => {
   const [auth, setAuth] = useRecoilState(authState);
   const { idToken, refreshToken } = auth;
 
   useEffect(() => {
-    axiosClient.interceptors.request.use(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleUnauthenticated = async (originalRequest: any, token: string) => {
+      originalRequest._retry = true;
+      const { id_token } = await refresh(token);
+      setAuth({ ...auth, idToken: id_token });
+      axios.defaults.headers.common.Authorization = `Bearer ${id_token}`;
+      return axios(originalRequest);
+    };
+
+    axios.interceptors.request.use(
       (config) => {
         if (config.headers && idToken) config.headers.Authorization = `Bearer ${idToken}`;
         return config;
@@ -17,24 +26,16 @@ export const useAxiosInterceptors = () => {
       (error) => Promise.reject(error),
     );
 
-    axiosClient.interceptors.response.use(
+    axios.interceptors.response.use(
       (response) => response,
-      // eslint-disable-next-line space-before-function-paren
       async (error) => {
         const originalRequest = error.config;
         const status = error.response.status;
 
-        if ((status === 401 || status === 403) && !originalRequest._retry && refreshToken) {
-          originalRequest._retry = true;
-          const response = await refresh(refreshToken);
-          const { id_token } = response.data;
-          setAuth({ ...auth, idToken: id_token });
-        }
-
-        return error;
+        return refreshToken && (status === 401 || status === 403) && !originalRequest._retry
+          ? handleUnauthenticated(originalRequest, refreshToken)
+          : Promise.reject(error);
       },
     );
   }, [idToken, refreshToken]);
-
-  return axiosClient;
 };
