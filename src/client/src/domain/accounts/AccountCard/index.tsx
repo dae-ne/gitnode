@@ -2,8 +2,8 @@ import React from 'react';
 import { LinkOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { Card, UserInfo } from 'ui';
+import { useGetAccountsQuery } from '../internal/queries';
 import './styles.less';
-import { useGetAccountsQuery } from '../api';
 
 export interface AccountCardProps {
   accountId: string;

@@ -12,6 +12,7 @@ namespace GitNode.WebApi.Api.Repos
     public class RepoController : ApiControllerBase
     {
         [HttpGet("{id:int}")]
+        [Swagger(ReposDefaults.SwaggerTag, "getRepo")]
         public async Task<ActionResult<RepoResponseDto>> GetRepo([FromRoute] int id)
         {
             var response = await Mediator.Send(new GetRepoQuery(id));
@@ -20,6 +21,7 @@ namespace GitNode.WebApi.Api.Repos
         }
 
         [HttpPost]
+        [Swagger(ReposDefaults.SwaggerTag, "addRepo")]
         public async Task<ActionResult<RepoResponseDto>> AddRepo([FromBody] AddRepoRequestDto request)
         {
             var response = await Mediator.Send(new AddRepoCommand(
@@ -33,6 +35,7 @@ namespace GitNode.WebApi.Api.Repos
         }
         
         [HttpPut("{id:int}")]
+        [Swagger(ReposDefaults.SwaggerTag, "updateRepo")]
         public async Task<IActionResult> UpdateRepo([FromRoute] int id, [FromBody] UpdateRepoRequestDto request)
         {
             await Mediator.Send(new UpdateRepoCommand(id, request.Name, request.Description, request.Private));

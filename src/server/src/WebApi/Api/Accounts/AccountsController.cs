@@ -10,6 +10,7 @@ namespace GitNode.WebApi.Api.Accounts
     public class AccountsController : ApiControllerBase
     {
         [HttpGet]
+        [Swagger(AccountsDefaults.SwaggerTag, "getAccounts")]
         public async Task<ActionResult<IEnumerable<AccountResponseDto>>> GetAccounts()
         {
             var response = await Mediator.Send(new GetAccountsQuery());

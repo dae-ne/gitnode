@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getExternalRepos, postExternalRepos, useGetReposQuery } from '../api';
+import { ReposRepository } from 'infrastructure/codegen';
+import { useGetReposQuery } from '../internal/queries';
 
 export const useReposListCard = () => {
   const [fetchLoading, setFetchLoading] = useState(true);
@@ -17,9 +18,9 @@ export const useReposListCard = () => {
         return;
       }
 
-      const externalRepos = await getExternalRepos(platform, login);
+      const externalRepos = await ReposRepository.getExternalRepos(platform, login);
       const ids = externalRepos.map((repo) => repo.origin_id);
-      await postExternalRepos(platform, login, ids);
+      await ReposRepository.addMultipleRepos({ account: login, platform, origin_ids: ids });
       await refetch();
       setFetchLoading(false);
     }

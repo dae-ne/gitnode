@@ -11,6 +11,7 @@ namespace GitNode.WebApi.Api.Users
     public class UserController : ApiControllerBase
     {
         [HttpGet]
+        [Swagger(UsersDefaults.SwaggerTag, "getAuthenticatedUser")]
         public async Task<ActionResult<UserResponseDto>> GetAuthenticatedUser()
         {
             var response = await Mediator.Send(new GetAuthenticatedUserQuery());
@@ -20,6 +21,7 @@ namespace GitNode.WebApi.Api.Users
 
         [AllowAnonymous]
         [HttpGet("{id}")]
+        [Swagger(UsersDefaults.SwaggerTag, "getUser")]
         public async Task<ActionResult<UserResponseDto>> GetUser([FromRoute] string id)
         {
             var response = await Mediator.Send(new GetUserQuery(id));
@@ -28,6 +30,7 @@ namespace GitNode.WebApi.Api.Users
         }
 
         [HttpDelete]
+        [Swagger(UsersDefaults.SwaggerTag, "removeUser")]
         public async Task<IActionResult> RemoveUser()
         {
             await Mediator.Send(new RemoveUserCommand());

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --config webpack.config.ts",
+    "generate": "openapi -i http://localhost:5000/swagger/v1/swagger.json -o ./src/infrastructure/codegen --exportCore false --postfix Repository",
     "eslint": "eslint . --ext .ts,.tsx",
     "eslint:fix": "eslint . --fix --ext .ts,.tsx",
     "stylelint": "stylelint src/**/*.less --custom-syntax postcss-less",
@@ -63,6 +64,7 @@
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "lint-staged": "^12.1.7",
+    "openapi-typescript-codegen": "^0.13.0",
     "postcss": "^8.4.5",
     "postcss-less": "^6.0.0",
     "prettier": "^2.5.1",

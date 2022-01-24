@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'ui';
-import { useGetAccountsQuery } from '../api';
-import { AccountListItemCard } from '../components';
+import { AccountListItemCard } from '../internal/components';
+import { useGetAccountsQuery } from '../internal/queries';
 import './styles.less';
 
 const { Grid } = Card;

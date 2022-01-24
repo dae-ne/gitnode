@@ -1,5 +1,5 @@
-﻿using GitNode.Domain.Entities;
-using GitNode.Domain.Models.Platforms;
+﻿using System.ComponentModel.DataAnnotations;
+using GitNode.Domain.Entities;
 
 namespace GitNode.WebApi.Api.Repos.Responses
 {
@@ -23,18 +23,24 @@ namespace GitNode.WebApi.Api.Repos.Responses
             Id = id;
         }
 
-        public int? Id { get; set; }
+        [Required]
+        public int Id { get; set; }
 
+        [Required]
         public int OriginId { get; set; }
         
+        [Required]
         public string Name { get; set; }
-
+        
         public string Description { get; set; }
         
+        [Required]
         public string Url { get; set; }
 
+        [Required]
         public bool Private { get; set; }
         
+        [Required]
         public RepoOwnerResponseDto Owner { get; set; }
 
         public static RepoResponseDto FromDomain(RepoEntity repo) =>

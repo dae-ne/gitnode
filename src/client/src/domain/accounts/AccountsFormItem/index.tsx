@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Select } from 'antd';
-import { userAccountsMock } from '../_mock';
+import { userAccountsMock } from '../internal/_mock';
 
 const { Option } = Select;
 

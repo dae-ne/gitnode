@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Radio, RadioChangeEvent } from 'antd';
-import { platformsMock } from '../_mock';
+import { platformsMock } from '../internal/_mock';
 
 export interface PlatformsFormItem {
   onChange?: (name: string) => void;

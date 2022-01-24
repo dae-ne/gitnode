@@ -39,6 +39,8 @@ namespace GitNode.WebApi
 
             services.AddSwaggerGen(c =>
             {
+                c.EnableAnnotations();
+                c.SchemaFilter<NonNullableSchemaFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GitNode", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

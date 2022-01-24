@@ -14,6 +14,7 @@ namespace GitNode.WebApi.Api.Repos
     public class ReposController : ApiControllerBase
     {
         [HttpGet]
+        [Swagger(ReposDefaults.SwaggerTag, "getRepos")]
         public async Task<ActionResult<IEnumerable<RepoResponseDto>>> GetRepos()
         {
             var response = await Mediator.Send(new GetReposQuery());
@@ -22,6 +23,7 @@ namespace GitNode.WebApi.Api.Repos
         }
         
         [HttpGet("{platform}/{account}")]
+        [Swagger(ReposDefaults.SwaggerTag, "getExternalRepos")]
         public async Task<ActionResult<IEnumerable<ExternalRepoResponseDto>>> GetExternalRepos(
             [FromRoute] string platform,
             [FromRoute] string account)
@@ -34,6 +36,7 @@ namespace GitNode.WebApi.Api.Repos
         }
         
         [HttpPost]
+        [Swagger(ReposDefaults.SwaggerTag, "addMultipleRepos")]
         public async Task<IActionResult> AddMultipleRepos([FromBody] AddExternalReposRequestDto request)
         {
             await Mediator.Send(new AddExternalReposCommand(

@@ -11,6 +11,7 @@ namespace GitNode.WebApi.Api.Accounts
     public class AccountController : ApiControllerBase
     {
         [HttpGet("{id:int}")]
+        [Swagger(AccountsDefaults.SwaggerTag, "getAccount")]
         public async Task<ActionResult<AccountResponseDto>> GetAccount([FromRoute] int id)
         {
             var response = await Mediator.Send(new GetAccountQuery(id));
@@ -19,6 +20,7 @@ namespace GitNode.WebApi.Api.Accounts
         }
         
         [HttpPost]
+        [Swagger(AccountsDefaults.SwaggerTag, "addAccount")]
         public async Task<ActionResult<AccountResponseDto>> AddAccount([FromBody] AddAccountRequestDto request)
         {
             var response = await Mediator.Send(new AddAccountCommand(

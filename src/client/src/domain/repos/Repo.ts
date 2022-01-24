@@ -1,9 +1,11 @@
+import { RepoOwner } from './RepoOwner';
+
 export interface Repo {
-  id?: number;
+  id: number;
   originId: number;
   name: string;
-  description: string;
+  description?: string;
   url: string;
   isPrivate: boolean;
-  account: string;
+  owner: RepoOwner;
 }

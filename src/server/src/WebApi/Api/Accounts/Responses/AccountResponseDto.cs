@@ -1,4 +1,5 @@
-﻿using GitNode.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using GitNode.Domain.Entities;
 
 namespace GitNode.WebApi.Api.Accounts.Responses
 {
@@ -24,19 +25,27 @@ namespace GitNode.WebApi.Api.Accounts.Responses
             AvatarUrl = avatarUrl;
         }
 
+        [Required]
         public int Id { get; set; }
         
+        [Required]
         public string OriginId { get; set; }
         
+        [Required]
         public string UserId { get; set; }
 
+        [Required]
         public string Platform { get; set; }
         
         public string Name { get; set; }
 
+        [Required]
         public string Login { get; set; }
         
+        [Required]
         public string Url { get; set; }
+        
+        [Required]
         public string AvatarUrl { get; set; }
 
         public static AccountResponseDto FromDomain(AccountEntity account) =>

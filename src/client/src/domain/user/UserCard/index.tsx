@@ -2,7 +2,7 @@ import React from 'react';
 import { MailOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Divider } from 'antd';
 import { Card, UserInfo } from 'ui';
-import { useGetUserQuery } from '../api';
+import { useGetUserQuery } from '../internal/queries';
 import './styles.less';
 
 export const UserCard = () => {

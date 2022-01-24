@@ -5,7 +5,7 @@ import { authState, deleteTokens } from 'infrastructure/auth';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import { useResetRecoilState } from 'recoil';
 import { Avatar } from 'ui';
-import { useGetUserQuery } from '../api';
+import { useGetUserQuery } from '../internal/queries';
 import './styles.less';
 
 export interface AvatarDropdownProps {

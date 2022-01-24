@@ -1,4 +1,5 @@
-﻿using GitNode.Domain.Interfaces.Identity;
+﻿using System.ComponentModel.DataAnnotations;
+using GitNode.Domain.Interfaces.Identity;
 
 namespace GitNode.WebApi.Api.Auth.Responses
 {
@@ -18,14 +19,19 @@ namespace GitNode.WebApi.Api.Auth.Responses
             TokenType = tokenType;
         }
 
+        [Required]
         public string IdToken { get; set; }
 
+        [Required]
         public string RefreshToken { get; set; }
     
+        [Required]
         public uint ExpiresIn { get; set; }
         
+        [Required]
         public string Scope { get; set; }
     
+        [Required]
         public string TokenType { get; set; }
 
         public static TokenResponseDto FromDomain(ITokenData tokenData) =>

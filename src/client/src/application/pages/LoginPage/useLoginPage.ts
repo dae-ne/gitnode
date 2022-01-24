@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'antd';
-import { authenticate, authState, saveTokens, useGooglePopup } from 'infrastructure/auth';
+import { authState, saveTokens, useGooglePopup } from 'infrastructure/auth';
+import { AuthRepository } from 'infrastructure/codegen';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
@@ -18,7 +19,10 @@ export const useLoginPage = () => {
   useEffect(() => {
     if (code) {
       const fetchTokens = async () => {
-        const { id_token, refresh_token } = await authenticate(code);
+        const { id_token, refresh_token } = await AuthRepository.getToken({
+          code,
+          grant_type: 'authorization_code',
+        });
         setAuth({ idToken: id_token, refreshToken: refresh_token });
       };
       fetchTokens();

@@ -12,6 +12,7 @@ namespace GitNode.WebApi.Api.Users
     public class UsersController : ApiControllerBase
     {
         [HttpGet]
+        [Swagger(UsersDefaults.SwaggerTag, "getUsers")]
         public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsers()
         {
             var response = await Mediator.Send(new GetUsersQuery());

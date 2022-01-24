@@ -1,4 +1,5 @@
-﻿using GitNode.Domain.Models.Platforms;
+﻿using System.ComponentModel.DataAnnotations;
+using GitNode.Domain.Models.Platforms;
 
 namespace GitNode.WebApi.Api.Repos.Responses
 {
@@ -20,16 +21,21 @@ namespace GitNode.WebApi.Api.Repos.Responses
             Account = account;
         }
 
+        [Required]
         public int OriginId { get; set; }
         
+        [Required]
         public string Name { get; set; }
-
+        
         public string Description { get; set; }
         
+        [Required]
         public string Url { get; set; }
 
+        [Required]
         public bool Private { get; set; }
         
+        [Required]
         public string Account { get; set; }
         
         public static ExternalRepoResponseDto FromDomain(Repo repo) =>

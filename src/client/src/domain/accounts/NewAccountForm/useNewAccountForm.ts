@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Form } from 'antd';
+import { AccountsRepository } from 'infrastructure/codegen';
 import { useNavigate } from 'react-router-dom';
-import { postAccount } from '../api';
-import { useGitHubPopup } from '../hooks';
+import { useGitHubPopup } from '../internal/hooks';
 
 interface ValuesType {
   platform: string;
@@ -17,7 +17,7 @@ export const useNewAccountForm = () => {
   useEffect(() => {
     if (code && platform) {
       const addAccount = async () => {
-        const { login } = await postAccount(code, platform);
+        const { login } = await AccountsRepository.addAccount({ code, platform });
         navigate(`/?login=${login}&platform=${platform}`);
       };
       addAccount();

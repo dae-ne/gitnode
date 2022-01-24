@@ -13,6 +13,7 @@ namespace GitNode.WebApi.Api.Auth
     public class AuthController : ApiControllerBase
     {
         [HttpPost("token")]
+        [Swagger(AuthDefaults.SwaggerTag, "getToken")]
         public async Task<ActionResult<TokenResponseDto>> GetToken([FromBody] GetTokenRequestDto request)
         {
             var response = await Mediator.Send(new GetTokenCommand(
@@ -24,6 +25,7 @@ namespace GitNode.WebApi.Api.Auth
         }
 
         [HttpPost("revoke")]
+        [Swagger(AuthDefaults.SwaggerTag, "revokeToken")]
         public async Task<IActionResult> RevokeToken([FromBody] RevokeTokenRequestDto request)
         {
             await Mediator.Send(new RevokeTokenCommand(request.Token));
