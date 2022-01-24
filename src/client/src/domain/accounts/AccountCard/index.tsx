@@ -6,12 +6,12 @@ import { useGetAccountsQuery } from '../internal/queries';
 import './styles.less';
 
 export interface AccountCardProps {
-  accountId: string;
+  accountId: number;
 }
 
 export const AccountCard = ({ accountId }: AccountCardProps) => {
   const { isLoading, data } = useGetAccountsQuery();
-  const account = data?.find((a) => a.id.toString() === accountId);
+  const account = data?.find((a) => a.id === accountId);
 
   if (!account) {
     return <></>;

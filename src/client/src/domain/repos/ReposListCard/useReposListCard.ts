@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
 import { ReposRepository } from 'infrastructure/codegen';
+import { Repo } from '..';
 import { useGetReposQuery } from '../internal/queries';
 
-export const useReposListCard = () => {
+const filterData = (data?: Repo[], limit?: number, accountId?: number) => {
+  if (!data) return data;
+  const filteredByAccountId = accountId ? data.filter((repo) => repo.owner.id === accountId) : data;
+  return limit ? filteredByAccountId.slice(0, limit) : filteredByAccountId;
+};
+
+export const useReposListCard = (limit?: number, accountId?: number) => {
   const [fetchLoading, setFetchLoading] = useState(true);
   const { isLoading, data, refetch } = useGetReposQuery();
 
@@ -27,5 +34,5 @@ export const useReposListCard = () => {
     fetchExternalRepos();
   }, []);
 
-  return { isLoading: isLoading || fetchLoading, data };
+  return { isLoading: isLoading || fetchLoading, data: filterData(data, limit, accountId) };
 };

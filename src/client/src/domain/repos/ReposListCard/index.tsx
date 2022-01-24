@@ -7,10 +7,11 @@ import { useReposListCard } from './useReposListCard';
 
 export interface ReposListCardProps extends Pick<CardProps, 'extra'> {
   limit?: number;
+  accountId?: number;
 }
 
-export const ReposListCard = ({ extra, limit }: ReposListCardProps) => {
-  const { isLoading, data } = useReposListCard();
+export const ReposListCard = ({ extra, limit, accountId }: ReposListCardProps) => {
+  const { isLoading, data } = useReposListCard(limit, accountId);
 
   return (
     <Card title="Repositories" extra={extra} loading={isLoading} bodyStyle={{ padding: 0 }}>
@@ -20,7 +21,7 @@ export const ReposListCard = ({ extra, limit }: ReposListCardProps) => {
             const { id, owner, ...rest } = item;
             return id ? <RepoListItem id={id} account={owner.login} {...rest} /> : undefined;
           }}
-          dataSource={limit ? data.slice(0, limit) : data}
+          dataSource={data}
           size="large"
         />
       )}
