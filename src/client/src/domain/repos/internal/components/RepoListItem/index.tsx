@@ -13,20 +13,24 @@ export interface RepoListItemProps {
   description?: string;
   isPrivate: boolean;
   account: string;
+  accountAvatarUrl: string;
 }
 
-export const RepoListItem = ({ id, name, description, isPrivate, account }: RepoListItemProps) => {
+export const RepoListItem = ({
+  id,
+  name,
+  description,
+  isPrivate,
+  account,
+  accountAvatarUrl,
+}: RepoListItemProps) => {
   return (
     <Item key={id} className="repo-list-item">
       <Meta
         title={
           <div className="repo-list-item__meta">
             <div className="repo-list-item__info">
-              <Avatar
-                className="repo-list-item__avatar"
-                size="small"
-                src="https://eu.ui-avatars.com/api/?name=Rafał+Czajka"
-              />
+              <Avatar className="repo-list-item__avatar" size="small" src={accountAvatarUrl} />
               <p>
                 {`${account} / `}
                 <Link to={`/repos/${id}`}>{name}</Link>

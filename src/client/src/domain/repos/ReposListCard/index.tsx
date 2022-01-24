@@ -19,7 +19,14 @@ export const ReposListCard = ({ extra, limit, accountId }: ReposListCardProps) =
         <List<Repo>
           renderItem={(item) => {
             const { id, owner, ...rest } = item;
-            return id ? <RepoListItem id={id} account={owner.login} {...rest} /> : undefined;
+            return id ? (
+              <RepoListItem
+                id={id}
+                account={owner.login}
+                accountAvatarUrl={owner.avatarUrl}
+                {...rest}
+              />
+            ) : undefined;
           }}
           dataSource={data}
           size="large"
