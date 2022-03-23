@@ -1,28 +1,29 @@
 import React from 'react';
-import { Form, Select } from 'antd';
-import { userAccountsMock } from '../internal/_mock';
+import { Form, Select, Spin } from 'antd';
+import { useAccountsFormItem } from './useAccountsFormItem';
 
 const { Option } = Select;
 
 export interface AccountsFormItemProps {
-  platform: string;
+  platform?: string;
 }
 
 export const AccountsFormItem = ({ platform }: AccountsFormItemProps) => {
-  const platformName = platform.toLowerCase();
+  const { isLoading, data } = useAccountsFormItem(platform);
+
+  if (isLoading) return <Spin size="large" />;
+
   return (
     <Form.Item name="account" label="Account" rules={[{ required: true }]}>
       <Select placeholder="Select an account">
-        {userAccountsMock
-          .filter((account) => account.platform.toLowerCase() === platformName)
-          .map((account) => {
-            const { id, login } = account;
-            return (
-              <Option key={id} value={id}>
-                {login}
-              </Option>
-            );
-          })}
+        {data.map((account) => {
+          const { id, login } = account;
+          return (
+            <Option key={id} value={login}>
+              {login}
+            </Option>
+          );
+        })}
       </Select>
     </Form.Item>
   );

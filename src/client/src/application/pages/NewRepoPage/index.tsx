@@ -1,5 +1,7 @@
-import { RepoForm } from 'domain/repos';
-import React from 'react';
+import { AccountsFormItem } from 'domain/accounts';
+import { PlatformsFormItem } from 'domain/platforms';
+import { AddRepoForm } from 'domain/repos';
+import React, { useState } from 'react';
 import { PageHeader, Page, PageTitleProp, Container, Wrapper } from 'ui';
 
 const renderHeader = () => {
@@ -7,13 +9,17 @@ const renderHeader = () => {
 };
 
 export const NewRepoPage = ({ title }: PageTitleProp) => {
+  const [platform, setPlatform] = useState<string | undefined>();
+
   return (
     <Page title={title} size="large" header={renderHeader()}>
       <Wrapper background="white">
         <Container size="small">
-          <p>platform</p>
-          <p>account</p>
-          <RepoForm submitText="Create" />
+          <AddRepoForm
+            submitText="Create"
+            platforms={<PlatformsFormItem onChange={setPlatform} />}
+            accounts={<AccountsFormItem platform={platform} />}
+          />
         </Container>
       </Wrapper>
     </Page>

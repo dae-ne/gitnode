@@ -1,11 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
-import { authState, deleteTokens } from 'infrastructure/auth';
-import type { MenuInfo } from 'rc-menu/lib/interface';
-import { useResetRecoilState } from 'recoil';
 import { Avatar } from 'ui';
-import { useGetUserQuery } from '../internal/queries';
+import { useAvatarDropdown } from './useAvatarDropdown';
 import './styles.less';
 
 export interface AvatarDropdownProps {
@@ -13,18 +10,7 @@ export interface AvatarDropdownProps {
 }
 
 export const AvatarDropdown = ({ menu }: AvatarDropdownProps) => {
-  const logout = useResetRecoilState(authState);
-  const { data } = useGetUserQuery();
-  const onMenuClick = useCallback(
-    (event: MenuInfo) => {
-      const { key } = event;
-      if (key === 'logout') {
-        deleteTokens();
-        logout();
-      }
-    },
-    [menu],
-  );
+  const { data, onMenuClick } = useAvatarDropdown(menu);
 
   if (!data) return <p>loading...</p>;
 

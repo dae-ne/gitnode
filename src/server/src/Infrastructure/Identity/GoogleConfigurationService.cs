@@ -19,7 +19,7 @@ namespace GitNode.Infrastructure.Identity
 
         private OpenIdConnectConfiguration _configuration;
         
-        private readonly SemaphoreSlim _refreshLock = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _refreshLock = new(1, 1);
         
         private DateTimeOffset _syncAfter = DateTimeOffset.MinValue;
         private DateTimeOffset _lastRefresh = DateTimeOffset.MinValue;

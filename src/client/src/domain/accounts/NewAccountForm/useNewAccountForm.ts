@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Form } from 'antd';
 import { AccountsRepository } from 'infrastructure/codegen';
 import { useNavigate } from 'react-router-dom';
-import { useGitHubPopup } from '../internal/hooks';
+import { useGitHubPopup, useGitLabPopup } from '../internal/hooks';
 
 interface ValuesType {
   platform: string;
@@ -11,22 +11,24 @@ interface ValuesType {
 export const useNewAccountForm = () => {
   const [platform, setPlatform] = useState<string>();
   const navigate = useNavigate();
-  const { code, openPopup } = useGitHubPopup();
+  const { code: gitHubCode, openPopup: openGitHubPopup } = useGitHubPopup();
+  // const { code: bitbucketCode, openPopup: openBitbucketPopup } = useBitbucketPopup();
+  const { code: gitLabCode, openPopup: openGitLabPopup } = useGitLabPopup();
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (code && platform) {
+    if (gitHubCode && platform) {
       const addAccount = async () => {
-        const { login } = await AccountsRepository.addAccount({ code, platform });
+        const { login } = await AccountsRepository.addAccount({ code: gitHubCode, platform });
         navigate(`/?login=${login}&platform=${platform}`);
       };
       addAccount();
     }
-  }, [code]);
+  }, [gitHubCode]);
 
   const onFinish = (values: ValuesType) => {
     setPlatform(values.platform);
-    openPopup();
+    openGitHubPopup();
   };
 
   return { form, onFinish };

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { authState } from 'infrastructure/auth';
+import { authState, deleteTokens, saveTokens } from 'infrastructure/auth';
 import { AuthRepository } from 'infrastructure/codegen';
 import { useRecoilState } from 'recoil';
 import { axiosConfig } from './axiosConfig';
@@ -18,8 +18,17 @@ export const useAxiosInterceptors = () => {
         grant_type: 'refresh_token',
       });
       setAuth({ ...auth, idToken: id_token });
+      saveTokens({ idToken: id_token, refreshToken: auth.refreshToken });
       axiosConfig.defaults.headers.common.Authorization = `Bearer ${id_token}`;
       return axiosConfig(originalRequest);
+    };
+
+    // TODO: change type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleFinalResponse = (error: any) => {
+      setAuth({});
+      deleteTokens();
+      return error;
     };
 
     axiosConfig.interceptors.request.use(
@@ -38,7 +47,7 @@ export const useAxiosInterceptors = () => {
 
         return refreshToken && (status === 401 || status === 403) && !originalRequest._retry
           ? handleUnauthenticated(originalRequest, refreshToken)
-          : Promise.reject(error);
+          : Promise.reject(handleFinalResponse(error));
       },
     );
   }, [idToken, refreshToken]);

@@ -5,19 +5,19 @@ const height = 500;
 const left = (screen.width - width) / 2;
 const top = (screen.height - height) / 4;
 
-const windowName = 'Sign in with GitHub';
+const windowName = 'Sign in with GitLab';
 const params = `width=${width},height=${height},\
   left=${left},top=${top},\
   location=no,menubar=no,toolbar=no,status=no`;
 
 const authUrl =
-  'https://github.com/login/oauth/authorize?' +
-  'client_id=008d4433666f7d02672d&' +
+  'https://gitlab.com/oauth/authorize?' +
+  'client_id=51ac13816c0fecaa2938f1b239e7d49d463df7f0e5246c8bb297a61d87ada113&' +
   'redirect_uri=http%3A//localhost:3000&' +
-  'scope=repo%20user&' +
-  'allow_signup=true&';
+  'response_type=code&' +
+  'scope=api';
 
-export const useGitHubPopup = () => {
+export const useGitLabPopup = () => {
   const [code, setCode] = useState<string | undefined>(undefined);
   const [popup, setPopup] = useState<Window | null>(null);
   const [intervals, setIntervals] = useState<ReturnType<typeof setInterval>[]>([]);
