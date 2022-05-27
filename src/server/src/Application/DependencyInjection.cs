@@ -10,10 +10,11 @@ namespace GitNode.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            var executingAssembly = Assembly.GetExecutingAssembly();
             return services
-                .AddMediatR(Assembly.GetExecutingAssembly())
-                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
-                .AddAutoMapper(Assembly.GetExecutingAssembly())
+                .AddMediatR(executingAssembly)
+                .AddValidatorsFromAssembly(executingAssembly)
+                .AddAutoMapper(executingAssembly)
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
         }
     }

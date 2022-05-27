@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 using GitNode.Application.Common.Interfaces;
 using GitNode.Infrastructure.Options;
 using Microsoft.Extensions.Options;
@@ -17,35 +19,48 @@ namespace GitNode.Infrastructure.Cryptography
         
         public string Encrypt(string text)
         {
-            return text;
-            // var cipher = CreateCipher(_options.Value.PrivateKey);
-            // var iv = Convert.ToBase64String(cipher.IV);
-            // cipher.IV = Convert.FromBase64String(iv);
-            // var cryptTransform = cipher.CreateEncryptor();
-            // var plaintext = Encoding.UTF8.GetBytes(text);
-            // var cipherText = cryptTransform.TransformFinalBlock(plaintext, 0, plaintext.Length);
-            // return Convert.ToBase64String(cipherText);
+            var iv = new byte[16];
+            byte[] array;
+            
+            using (var aes = Aes.Create())
+            {
+                aes.Key = Encoding.UTF8.GetBytes(_options.Value.PrivateKey);
+                aes.IV = iv;
+                var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+                
+                using (var ms = new MemoryStream())
+                {
+                    using (var cryptoStream = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (var streamWriter = new StreamWriter(cryptoStream))
+                        {
+                            streamWriter.Write(text);
+                        }
+
+                        array = ms.ToArray();
+                    }
+                }
+            }
+
+            return Convert.ToBase64String(array);
         }  
   
         public string Decrypt(string text)
         {
-            return text;
-            // var cipher = CreateCipher(_options.Value.PrivateKey);
-            // var iv = Convert.ToBase64String(cipher.IV);
-            // cipher.IV = Convert.FromBase64String(iv);
-            // var cryptTransform = cipher.CreateDecryptor();
-            // var encryptedBytes = Convert.FromBase64String(text);
-            // var plainBytes = cryptTransform.TransformFinalBlock(encryptedBytes, 0, encryptedBytes.Length);
-            // return Encoding.UTF8.GetString(plainBytes);
-        }
+            var iv = new byte[16];
+            var buffer = Convert.FromBase64String(text);
 
-        private static Aes CreateCipher(string keyBase64)
-        {
-            var cipher = Aes.Create();
-            cipher.Mode = CipherMode.CBC;
-            cipher.Padding = PaddingMode.ISO10126;
-            cipher.Key = Convert.FromBase64String(keyBase64);
-            return cipher;
+            using var aes = Aes.Create();
+            
+            aes.Key = Encoding.UTF8.GetBytes(_options.Value.PrivateKey);
+            aes.IV = iv;
+            var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+            using var ms = new MemoryStream(buffer);
+            using var cryptoStream = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
+            using var sr = new StreamReader(cryptoStream);
+            
+            return sr.ReadToEnd();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace GitNode.Infrastructure.Identity
         {
             var now = DateTimeOffset.UtcNow;
 
-            if (_configuration != null && _syncAfter > now)
+            if (_configuration is not null && _syncAfter > now)
             {
                 return _configuration;   
             }
@@ -40,7 +40,8 @@ namespace GitNode.Infrastructure.Identity
                 _configuration = await GetNewConfigurationAsync(GoogleDefaults.DiscoveryDocument)
                     .ConfigureAwait(false);   
             }
-            if (_configuration == null)
+            
+            if (_configuration is null)
             {
                 throw new InvalidOperationException(GoogleDefaults.DiscoveryDocument);
             }
